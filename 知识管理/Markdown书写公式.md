@@ -4,11 +4,11 @@ by 顾轶康
 
 [TOC]
 
-## 1. 如何插入公式
+## 如何插入公式
 
 - 行中公式(放在文中与其它文字混编)可以用如下方法表示：`$ 数学公式 $`
 
-- 独立公式可以用如下方法表示：`$$ 数学公式 $$`
+- 独立公式可以用如下方法表示：`$$ 数学公式 $$` **注意，不可有空行**
 
 - 自动编号的公式可以用如下方法表示：
 
@@ -40,7 +40,8 @@ $$ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\l
 
 $$ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text {，独立公式示例} $$
 
-## 2. 如何输入上下标
+
+## 如何输入上下标
 
 `^`表示上标, `_` 表示下标。如果上下标的内容多于一个字符，需要用 `{}`将这些内容括成一个整体。上下标可以嵌套，也可以同时使用。
 例子：
@@ -57,7 +58,8 @@ $$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$
 
 $$ \sideset{^1_2}{^3_4}\bigotimes $$
 
-## 3．如何输入括号和分隔符
+
+## 如何输入括号和分隔符
 
 `()`、`[]`和`|`表示符号本身，使用 `\{\}` 来表示 `{}`。当要显示大号的括号或分隔符时，要用 `\left` 和 `\right` 命令。
 一些特殊的括号：
@@ -81,7 +83,31 @@ $$ f(x,y,z) = 3y^2z \left( 3+\frac{7x+5}{1+y^2} \right) $$
 
 显示：$$\left. \frac{ {\rm d}u}{ {\rm d}x} \right| _{x=0}$$
 
-## 4．如何输入分数
+## 如何换行后等式对齐
+
+`\\`表示换行
+`\begin{aligned}` 和 `\end{aligned}` 之间 & 表示需要对齐的符号
+
+```txt
+\begin{aligned}
+R(S_2)&= p_2\cdot S_2=\sum_{i\in \mathcal{I}^+(p_2)}B_i+\beta B_{l'}\\
+&\leq \sum_{i\in \mathcal{I}^+(p_2)}B_i+B_{l'}\leq \sum_{i\in \mathcal{I}^+(p_1)}B_i \\
+&\leq \sum_{i\in \mathcal{I}^+(p_1)}B_i+\alpha B_l=R(S_1)
+\end{aligned}
+```
+
+显示:
+
+$$
+\begin{aligned}
+R(S_2)&= p_2\cdot S_2=\sum_{i\in \mathcal{I}^+(p_2)}B_i+\beta B_{l'}\\
+&\leq \sum_{i\in \mathcal{I}^+(p_2)}B_i+B_{l'}\leq \sum_{i\in \mathcal{I}^+(p_1)}B_i \\
+&\leq \sum_{i\in \mathcal{I}^+(p_1)}B_i+\alpha B_l=R(S_1)
+\end{aligned}
+$$
+
+
+## 如何输入分数
 
 通常使用 `\frac {分子} {分母}`命令产生一个分数\frac {分子} {分母}，分数可嵌套。
 便捷情况可直接输入 `\frac ab`来快速生成一个\frac ab。
@@ -95,7 +121,7 @@ $$ f(x,y,z) = 3y^2z \left( 3+\frac{7x+5}{1+y^2} \right) $$
 
 $$\frac{a-1}{b-1} \quad and \quad {a+1\over b+1}$$
 
-## 5．如何输入开方
+## 如何输入开方
 
 使用 `\sqrt [根指数，省略时为2] {被开方数}`命令输入开方。
 
@@ -107,7 +133,9 @@ $$\frac{a-1}{b-1} \quad and \quad {a+1\over b+1}$$
 
 $$\sqrt{2} \quad and \quad \sqrt[n]{3}$$
 
-## 6．如何输入省略号
+
+
+## 如何输入省略号
 
 数学公式中常见的省略号有两种，\ldots 表示与文本底线对齐的省略号，\cdots 表示与文本中线对齐的省略号。
 
@@ -119,7 +147,9 @@ $$\sqrt{2} \quad and \quad \sqrt[n]{3}$$
 
 $$f(x_1,x_2,\underbrace{\ldots}_{\rm ldots} ,x_n) = x_1^2 + x_2^2 + \underbrace{\cdots}_{\rm cdots} + x_n^2$$
 
-## 7．如何输入矢量
+
+
+## 如何输入矢量
 
 使用 `\vec{矢量}`来自动产生一个矢量。也可以使用 `\overrightarrow`等命令自定义字母上方的符号。
 
@@ -139,7 +169,9 @@ $$\vec{a} \cdot \vec{b}=0$$
 
 $$\overleftarrow{xy} \quad and \quad \overleftrightarrow{xy} \quad and \quad \overrightarrow{xy}$$
 
-## 8．如何输入积分
+
+
+## 如何输入积分
 
 使用 \int_积分下限^积分上限 {被积表达式} 来输入一个积分。
 
@@ -151,7 +183,9 @@ $$\overleftarrow{xy} \quad and \quad \overleftrightarrow{xy} \quad and \quad \ov
 
 $$\int_0^1 {x^2} \,{\rm d}x$$
 
-## 9．如何偏导
+
+
+## 如何偏导
 
 使用`\partial` 来输入一个偏导。
 
@@ -163,7 +197,9 @@ $$\int_0^1 {x^2} \,{\rm d}x$$
 
 $$\frac{\partial^{2}y}{\partial x^{2}}$$
 
-## 10．如何输入极限运算
+
+
+## 如何输入极限运算
 
 使用`\lim_{变量 \to 表达式} 表达式` 来输入一个极限。如有需求，可以更改 `\to` 符号至任意符号。
 
@@ -175,7 +211,9 @@ $$\frac{\partial^{2}y}{\partial x^{2}}$$
 
 $$ \lim_{n \to +\infty} \frac{1}{n(n+1)} \quad and \quad \lim_{x\leftarrow{示例}} \frac{1}{n(n+1)} $$
 
-## 11．如何输入累加、累乘运算
+
+
+## 如何输入累加、累乘运算
 
 使用 `\sum_{下标表达式}^{上标表达式} {累加表达式}`来输入一个累加。
 与之类似，使用 `\prod \bigcup \bigcap`来分别输入累乘、并集和交集。
@@ -189,7 +227,9 @@ $$ \lim_{n \to +\infty} \frac{1}{n(n+1)} \quad and \quad \lim_{x\leftarrow{示�
 
 $$\sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad and \quad \bigcup_{i=1}^{2} R$$
 
-## 12．如何输入希腊字母
+
+
+## 如何输入希腊字母
 
 输入 `\小写希腊字母英文全称`和`\首字母大写希腊字母英文全称`来分别输入小写和大写希腊字母。
 对于大写希腊字母与现有字母相同的，直接输入大写字母即可。
@@ -221,7 +261,7 @@ $$\sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad a
 | `$\psi$`     | ψ    | `$\Psi$`     | Ψ    |
 | `$\omega$`   | ω    | `$\Omega$`   | Ω    |
 
-## 13.大括号和行标的使用
+## 大括号和行标的使用
 
 使用 `\left`和 `\right`来创建自动匹配高度的 (圆括号)，[方括号] 和 {花括号} 。
 在每个公式末尾前使用`\tag{行标}`来实现行标。
@@ -262,7 +302,8 @@ f\left(
 \tag{行标}
 $$
 
-## 14. 运算符：
+
+## 运算符：
 
 | 关系运算符 | markdown语言   | 集合运算符 | markdown语言  | 对数运算符 | markdown语言 | 戴帽符号 | markdown语言  |
 | ---------- | -------------- | ---------- | ------------- | ---------- | ------------ | -------- | ------------- |
@@ -312,3 +353,10 @@ $$
 | ⟵        | `$\longleftarrow$`  |
 | ⟹        | `$\Longrightarrow$` |
 | ⟸        | `$\Longleftarrow$`  |
+
+## 工具
+
+- MathType —— 重量级公式编辑器，功能十分强大
+- Daum Equation Editor —— Mac平台轻量级LaTeX公式编辑器
+- MyScript —— iOS平台的公式编辑器，手写输入最便利
+
