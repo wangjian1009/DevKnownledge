@@ -1,9 +1,9 @@
-# Markdown书写公式
+# Markdown公式
 by 顾轶康
 
 [TOC]
 
-## 1.如何插入公式
+## 1. 如何插入公式
 
 - 行中公式(放在文中与其它文字混编)可以用如下方法表示：`$ 数学公式 $`
 
@@ -11,7 +11,7 @@ by 顾轶康
 
 - 自动编号的公式可以用如下方法表示：
 
-  ```bash
+  ```txt
   \begin{equation}
   数学公式
   \label{eq:当前公式名}
@@ -21,7 +21,7 @@ by 顾轶康
 
 例子：
 
-```bash
+```txt
 $ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text {，行内公式示例} $
 ```
 
@@ -31,7 +31,7 @@ $ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\le
 
 例子：
 
-```
+```txt
 $$ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text {，独立公式示例} $$
 ```
 
@@ -41,7 +41,7 @@ $$ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\l
 
 
 
-## 2.如何输入上下标
+## 2. 如何输入上下标
 
 `^`表示上标, `_` 表示下标。如果上下标的内容多于一个字符，需要用 `{}`将这些内容括成一个整体。上下标可以嵌套，也可以同时使用。
 例子：
@@ -248,7 +248,7 @@ $$\sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad a
 在每个公式末尾前使用`\tag{行标}`来实现行标。
 例子：
 
-```
+```txt
 $$
 f\left(
    \left[ 
