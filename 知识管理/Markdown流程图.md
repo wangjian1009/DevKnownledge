@@ -2,11 +2,23 @@
 
 ## 1. 如何插入流程图
 
-流程图的画法和代码段类似，也就是说，流程图是写在两个` ``` ` 之间的。
+流程图的画法和代码段类似，也就是说，流程图是写在两个**```**之间的。
 
-比如说Java代码，会是这样一种格式：` ```java ` 代码段 ` ``` `
+比如说Java代码，会是这样一种格式：
 
-那么流程图就是这样的：` ```flow ` 代码段 ` ``` `
+```txt
+ ```java 
+ 代码段
+ ```
+```
+
+那么流程图就是这样的：
+
+```txt
+ ```flow
+ 代码段
+ ``` 
+```
 
 ## 2. 画流程图的步骤
 
@@ -17,7 +29,7 @@
 
 ### 定义元素阶段的语法是
 
-```bash
+```txt
 tag=>type: content:>url
 ```
 
@@ -48,14 +60,14 @@ type有6中类型，分别为：
 
 用**->**来连接两个元素，需要注意的是condition类型，因为他有yes和no两个分支，所以要写成
 
-```bash
+```txt
 c2(yes)->io->e 
 c2(no)->op2->e
 ```
 
 ## 3. 实例
 
-```bash
+```txt
 st=>start: Start
 op=>operation: Your Operation
 sub=>subroutine: My Subroutine
@@ -85,7 +97,7 @@ cond(no)->sub(right)->op
 
 ### 实际应用
 
-```bash
+```txt
 st=>start: Start|past:>http://www.google.com[blank]
 e=>end: End:>http://www.google.com
 op1=>operation: get_hotel_ids|past
@@ -154,3 +166,4 @@ cond5(yes)->op5
 cond5(no)->cond3
 op5->e
 ```
+
