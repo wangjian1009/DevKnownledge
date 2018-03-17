@@ -10,14 +10,21 @@ by 顾轶康
 
 - 独立公式可以用如下方法表示：`$$ 数学公式 $$` **注意，不可有空行**
 
-- 自动编号的公式可以用如下方法表示：
+- 编号的公式可以用如下方法表示：
 
   ```txt
   \begin{equation}
   数学公式
   \label{eq:当前公式名}
   \end{equation}
-  自动编号后的公式可在全文任意处使用 \eqref{eq:公式名} 语句引用。
+  编号后的公式可在全文任意处使用 \eqref{eq:公式名} 语句引用。
+  ```
+- 自动编号的公式可以通过省略`\label{}`达成：
+
+  ```txt
+  \begin{equation}
+  数学公式
+  \end{equation}
   ```
 
 例子：
@@ -44,17 +51,26 @@ $$ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\l
 ## 如何输入上下标
 
 `^`表示上标, `_` 表示下标。如果上下标的内容多于一个字符，需要用 `{}`将这些内容括成一个整体。上下标可以嵌套，也可以同时使用。
+
 例子：
-`$$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$`
+
+```txt
+$$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$
+```
+
 显示：
 
 $$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$
 
 另外，如果要在左右两边都有上下标，可以用`\sideset` 命令
 
-- 例子：
-  `$$ \sideset{^1_2}{^3_4}\bigotimes $$`
-- 显示：
+例子：
+
+```txt
+$$ \sideset{^1_2}{^3_4}\bigotimes $$
+```
+  
+显示：
 
 $$ \sideset{^1_2}{^3_4}\bigotimes $$
 
@@ -62,6 +78,7 @@ $$ \sideset{^1_2}{^3_4}\bigotimes $$
 ## 如何输入括号和分隔符
 
 `()`、`[]`和`|`表示符号本身，使用 `\{\}` 来表示 `{}`。当要显示大号的括号或分隔符时，要用 `\left` 和 `\right` 命令。
+
 一些特殊的括号：
 
 | 输入                       | 显示             |
@@ -72,21 +89,59 @@ $$ \sideset{^1_2}{^3_4}\bigotimes $$
 | `$$\lbrace表达式\rbrace$$` | {表达式}{表达式} |
 
 例子：
-`$$ f(x,y,z) = 3y^2z \left( 3+\frac{7x+5}{1+y^2} \right) $$`
+
+```txt
+$$ f(x,y,z) = 3y^2z \left( 3+\frac{7x+5}{1+y^2} \right) $$
+```
+
 显示：
 
 $$ f(x,y,z) = 3y^2z \left( 3+\frac{7x+5}{1+y^2} \right) $$
 
 有时候要用`\left.`或`\right.`进行匹配而不显示本身。
 
-例子：`$$\left. \frac{ {\rm d}u}{ {\rm d}x} \right| _{x=0}$$`
+例子：
 
-显示：$$\left. \frac{ {\rm d}u}{ {\rm d}x} \right| _{x=0}$$
+```txt
+$$\left. \frac{ {\rm d}u}{ {\rm d}x} \right| _{x=0}$$
+```
+
+显示：
+
+$$\left. \frac{ {\rm d}u}{ {\rm d}x} \right| _{x=0}$$
+
+## 如何单个公式换行
+
+单个公式很长的时候需要换行，但**仅允许生成一个编号**时，可以用split标签包围公式代码，在需要转行的地方使用`\\`，每行需要使用1个`&`来标识对齐的位置，结束后可使用`\tag{...}`标签编号。
+
+例子：
+
+```txt
+$$
+\begin{split}
+a &= b \\
+c &= d \\
+e &= f 
+\end{split}\tag{1.3}
+$$
+```
+
+显示
+
+$$
+\begin{split}
+a &= b \\
+c &= d \\
+e &= f 
+\end{split}\tag{1.3}
+$$
 
 ## 如何换行后等式对齐
 
 `\\`表示换行
 `\begin{aligned}` 和 `\end{aligned}` 之间 & 表示需要对齐的符号
+
+例子:
 
 ```txt
 \begin{aligned}
@@ -115,7 +170,9 @@ $$
 
 例子：
 
-`$$\frac{a-1}{b-1} \quad and \quad {a+1\over b+1}$$`
+```txt
+$$\frac{a-1}{b-1} \quad and \quad {a+1\over b+1}$$
+```
 
 显示：
 
@@ -127,12 +184,13 @@ $$\frac{a-1}{b-1} \quad and \quad {a+1\over b+1}$$
 
 例子：
 
-`$$\sqrt{2} \quad and \quad \sqrt[n]{3}$$`
+```txt
+$$\sqrt{2} \quad and \quad \sqrt[n]{3}$$
+```
 
 显示：
 
 $$\sqrt{2} \quad and \quad \sqrt[n]{3}$$
-
 
 
 ## 如何输入省略号
@@ -141,7 +199,9 @@ $$\sqrt{2} \quad and \quad \sqrt[n]{3}$$
 
 例子：
 
-`$$f(x_1,x_2,\underbrace{\ldots}_{\rm ldots} ,x_n) = x_1^2 + x_2^2 + \underbrace{\cdots}_{\rm cdots} + x_n^2$$`
+```txt
+$$f(x_1,x_2,\underbrace{\ldots}_{\rm ldots} ,x_n) = x_1^2 + x_2^2 + \underbrace{\cdots}_{\rm cdots} + x_n^2$$
+```
 
 显示：
 
@@ -155,7 +215,9 @@ $$f(x_1,x_2,\underbrace{\ldots}_{\rm ldots} ,x_n) = x_1^2 + x_2^2 + \underbrace{
 
 例子：
 
-`$$\vec{a} \cdot \vec{b}=0$$`
+```txt
+$$\vec{a} \cdot \vec{b}=0$$
+```
 
 显示：
 
@@ -163,7 +225,9 @@ $$\vec{a} \cdot \vec{b}=0$$
 
 例子：
 
-`$$\overleftarrow{xy} \quad and \quad \overleftrightarrow{xy} \quad and \quad \overrightarrow{xy}$$`
+```txt
+$$\overleftarrow{xy} \quad and \quad \overleftrightarrow{xy} \quad and \quad \overrightarrow{xy}$$
+```
 
 显示：
 
@@ -177,7 +241,9 @@ $$\overleftarrow{xy} \quad and \quad \overleftrightarrow{xy} \quad and \quad \ov
 
 例子：
 
-`$$\int_0^1 {x^2} \,{\rm d}x$$`
+```txt
+$$\int_0^1 {x^2} \,{\rm d}x$$
+```
 
 显示：
 
@@ -191,7 +257,9 @@ $$\int_0^1 {x^2} \,{\rm d}x$$
 
 例子：
 
-`$$\frac{\partial^{2}y}{\partial x^{2}}$$`
+```txt
+$$\frac{\partial^{2}y}{\partial x^{2}}$$
+```
 
 显示：
 
@@ -205,7 +273,9 @@ $$\frac{\partial^{2}y}{\partial x^{2}}$$
 
 例子：
 
-`$$ \lim_{n \to +\infty} \frac{1}{n(n+1)} \quad and \quad \lim_{x\leftarrow{示例}} \frac{1}{n(n+1)} $$`
+```txt
+$$ \lim_{n \to +\infty} \frac{1}{n(n+1)} \quad and \quad \lim_{x\leftarrow{示例}} \frac{1}{n(n+1)} $$
+```
 
 显示：
 
@@ -221,7 +291,9 @@ $$ \lim_{n \to +\infty} \frac{1}{n(n+1)} \quad and \quad \lim_{x\leftarrow{示�
 
 例子：
 
-`$$\sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad and \quad \bigcup_{i=1}^{2} R$$`
+```txt
+$$\sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad and \quad \bigcup_{i=1}^{2} R$$
+```
 
 显示：
 
@@ -265,6 +337,7 @@ $$\sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad a
 
 使用 `\left`和 `\right`来创建自动匹配高度的 (圆括号)，[方括号] 和 {花括号} 。
 在每个公式末尾前使用`\tag{行标}`来实现行标。
+
 例子：
 
 ```txt
