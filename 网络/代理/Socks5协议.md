@@ -23,7 +23,7 @@
 | :-: | :------: | :------: |
 |  1　| 　　1　　 | 1 to 255 | 
 
-VER（版本）在这个协议版本中被设置为X'05'。NMETHODS（方法选择）中包含在METHODS（方法）中出现的方法标识的数据（用字节表示）。
+VER（版本）在这个协议版本中被设置为0x05。NMETHODS（方法选择）中包含在METHODS（方法）中出现的方法标识的数据（用字节表示）。
 
 服务器从METHODS给出的方法中选出一种，发送一个METHOD（方法）选择报文：
 
@@ -65,14 +65,11 @@ SOCKS请求如下表所示：
 
  - VER protocol version：0x05
  - CMD 
-
    - CONNECT 0x01
    - BIND 0x02
    - UDP ASSOCIATE 0x03
-
  - RSV RESERVED 
  - ATYP address type of following address 
-
    - IP V4 address: 0x01
    - DOMAINNAME: 0x03
    - IP V6 address: 0x04
@@ -84,11 +81,11 @@ SOCKS请求如下表所示：
 
 在地址域(DST.ADDR,BND.ADDR)中，ATYP域详细说明了包含在该域内部的地址类型： 
 
-- 0x01: 该地址是IPv4地址，长4个八位组。 
-- 0x03: 该地址包含一个完全的域名。第一个八位组包含了后面名称的八位组的数目，没有中止的空八位组。 
-- 0x04: 该地址是IPv6地址，长16个八位组。
+- **0x01**: 该地址是IPv4地址，长4个八位组。 
+- **0x03**: 该地址包含一个完全的域名。第一个八位组包含了后面名称的八位组的数目，没有中止的空八位组。 
+- **0x04**: 该地址是IPv6地址，长16个八位组。
 
-注：我在应用该协议时，纠结了好久，当时选择0x03，填写相应字段时，到底该怎么填写呢？是写socks服务器的还是写请求的？现在想想，自己好无知啊。。如我们想发生HTTP请求：www.baidu.com，则DST.ADDR为： 13www.baidu.com0x000x50。其中，13是www.baidu.com的长度，然后接www.baidu.com，然后是两个字节的端口号，这里为80端口。
+> 注：我在应用该协议时，纠结了好久，当时选择0x03，填写相应字段时，到底该怎么填写呢？是写socks服务器的还是写请求的？现在想想，自己好无知啊。。如我们想发生HTTP请求：www.baidu.com，则DST.ADDR为： 13www.baidu.com0x000x50。其中，13是www.baidu.com的长度，然后接www.baidu.com，然后是两个字节的端口号，这里为80端口。
 
 ## 6、回应
 
@@ -100,9 +97,8 @@ SOCKS请求如下表所示：
 
 其中： 
 
-- VER protocol version: X'05' 
+- VER protocol version: 0x05 
 - REP Reply field: 
-
   - 0x00 succeeded 
   - 0x01 general SOCKS server failure 
   - 0x02 connection not allowed by ruleset 
@@ -113,10 +109,8 @@ SOCKS请求如下表所示：
   - 0x07 Command not supported 
   - 0x08 Address type not supported 
   - 0x09 ~ 0xFF unassigned 
-
 - RSV RESERVED 
 - ATYP address type of following address 
-
   - IP V4 address: 0x01
   - DOMAINNAME: 0x03
   - IP V6 address: 0x04
@@ -124,7 +118,7 @@ SOCKS请求如下表所示：
 - BND.ADDR server bound address 
 - BND.PORT server bound port in network octet order 
 
-标志RESERVED(RSV)的地方必须设置为X'00'。
+标志RESERVED(RSV)的地方必须设置为0x00。
     
 如果被选中的方法包括有认证目的封装，完整性和/或机密性的检查，则回应就被封装在方法选择的封装套中。 
 
@@ -150,9 +144,9 @@ UDP连接请求用来建立一个在UDP延迟过程中操作UDP数据报的连�
 
 ### 回应过程 
 
-当一个回应(REP值非X'00')指明失败时，SOCKS主机必须在发送后马上中断该TCP连接。该过程时间必须为在侦测到引起失败的原因后不超过10秒。 
+当一个回应(REP值非0x00)指明失败时，SOCKS主机必须在发送后马上中断该TCP连接。该过程时间必须为在侦测到引起失败的原因后不超过10秒。 
 
-如果回应代码(REP值为X'00')时，则标志成功，请求或是BIND或是CONNECT，客户机现在就可以传送数据了。如果所选择的认证方法支持完整性、认证机制和/或机密性的封装，则数据被方法选择封装包来进行封装。类似，当数据从客户机到达SOCKS主机时，主机必须使用恰当的认证方法来封装数据。 
+如果回应代码(REP值为0x00)时，则标志成功，请求或是BIND或是CONNECT，客户机现在就可以传送数据了。如果所选择的认证方法支持完整性、认证机制和/或机密性的封装，则数据被方法选择封装包来进行封装。类似，当数据从客户机到达SOCKS主机时，主机必须使用恰当的认证方法来封装数据。 
 
 ## 7．基于UDP客户机的程序 
 
@@ -164,14 +158,12 @@ UDP连接请求用来建立一个在UDP延迟过程中操作UDP数据报的连�
 
 UDP请求报头是： 
 
-- RSV Reserved X'0000' 
+- RSV Reserved 0x0000
 - FRAG Current fragment number 
 - ATYP address type of following addresses: 
-
-  - IP V4 address: X'01' 
-  - DOMAINNAME: X'03' 
-  - IP V6 address: X'04' 
-
+  - IP V4 address: 0x01
+  - DOMAINNAME: 0x03
+  - IP V6 address: 0x04
 - DST.ADDR desired destination address 
 - DST.PORT desired destination port 
 - DATA user data 
@@ -180,15 +172,15 @@ UDP请求报头是：
 
 一个UDP延迟服务器必须从SOCKS服务器获得所期望的客户机的IP地址，而该客户机要发送数据报到BND.PORT--在至UDP连接的回应中已经给出。UDP延迟服务器还必须drop掉除了特定连接中的一条记录之外的其它的所有源IP地址。 
 
-FRAG域指出了数据报是否为大量的数据片(flagments)中的一片。如果标明了，高序(high-order)位说明是序列的结束段，而值为X'00'则说明该数据报是独立的。值介于1-127之间片断位于数据片序列中间。每一个接收端都有一个和这些数据片相关的重组队列表(REASSEMBLY QUEUE)和一个重组时间表(REASSEMBLY TIMER)。重组队列必须被再次初始化并且相关联的数据片必须被丢掉，而无论该重组时间表是否过期，或者一个新的携带FRAG域的数据报到达，并且FRAG域的值要小于正在进行的数据片序列中的FRAG域的最大值。且重组时间表必须不少于5秒。无论如何最好避免应用程序直接与数据片接触(？)。 
+FRAG域指出了数据报是否为大量的数据片(flagments)中的一片。如果标明了，高序(high-order)位说明是序列的结束段，而值为0x00则说明该数据报是独立的。值介于1-127之间片断位于数据片序列中间。每一个接收端都有一个和这些数据片相关的重组队列表(REASSEMBLY QUEUE)和一个重组时间表(REASSEMBLY TIMER)。重组队列必须被再次初始化并且相关联的数据片必须被丢掉，而无论该重组时间表是否过期，或者一个新的携带FRAG域的数据报到达，并且FRAG域的值要小于正在进行的数据片序列中的FRAG域的最大值。且重组时间表必须不少于5秒。无论如何最好避免应用程序直接与数据片接触(？)。 
 
-数据片的执行是可选的，一个不支持数据片的执行必须drop掉任何除了FRAG域值为X'00'了数据报。 
+数据片的执行是可选的，一个不支持数据片的执行必须drop掉任何除了FRAG域值为0x00了数据报。 
 
 一个利用SOCKS的UDP程序接口必须预设有效的缓冲区来装载数据报，并且系统提供的实际缓冲区的空间要比数据报大： 
 
-- if ATYP is X'01' - 10+method_dependent octets smaller 
-- if ATYP is X'03' - 262+method_dependent octets smaller 
-- if ATYP is X'04' - 20+method_dependent octets smaller 
+- if ATYP is 0x01 - 10+method_dependent octets smaller 
+- if ATYP is 0x03 - 262+method_dependent octets smaller 
+- if ATYP is 0x04 - 20+method_dependent octets smaller 
 
 ## 8、安全性考虑
 
